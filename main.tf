@@ -3,5 +3,5 @@ resource "aws_vpc" "main" {
   instance_tenancy = "default"
   enable_dns_hostnames = true
 
-  tags = local.common-tags
+  tags = local.vpc-final-tags
 }
