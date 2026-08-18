@@ -22,5 +22,5 @@ igw-final-tags = merge(
         var.igw-final-tags
 )
 
-zone-names = slice(data.aws_availability_zones.available,0,2)
+zone-names = slice(data.aws_availability_zones.available.names,0,2)
 }
