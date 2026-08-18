@@ -19,7 +19,7 @@ igw-final-tags = merge(
         {
         Name = "${var.project}-${var.environment}"
         },
-        igw-final-tags
+        var.igw-final-tags
 )
 
 }
