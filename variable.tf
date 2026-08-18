@@ -15,6 +15,6 @@ variable "vpc-final-tags" {
     type = map(string)
 }
 
-variable "igw-final-tags" {
+variable "igw-" {
     type = map(string)
 }
