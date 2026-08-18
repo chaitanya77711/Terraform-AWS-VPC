@@ -18,3 +18,13 @@ variable "vpc-final-tags" {
 variable "igw-final-tags" {
     type = map(string)
 }
+
+variable "public-subnet-cidrs" {
+    type = list
+    default = ["10.0.1.0/24" , "10.0.2.0/24"]
+}
+
+variable "public-subnet-tags" {
+    type = map
+    default = []
+}
