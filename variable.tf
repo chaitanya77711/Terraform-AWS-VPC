@@ -26,5 +26,5 @@ variable "public-subnet-cidrs" {
 
 variable "public-subnet-tags" {
     type = map
-    default = []
+    default = {}
 }
