@@ -14,3 +14,7 @@ variable "cidr_block" {
 variable "vpc-final-tags" {
     type = map(string)
 }
+
+variable "igw" {
+    type = map(string)
+}
