@@ -31,7 +31,7 @@ variable "public-subnet-tags" {
 
 variable "private-subnet-cidrs" {
     type = list
-    default = ["10.0.1.0/24" , "10.0.2.0/24"]
+    default = ["10.0.11.0/24" , "10.0.12.0/24"]
 }
 
 variable "private-subnet-tags" {
@@ -41,7 +41,7 @@ variable "private-subnet-tags" {
 
 variable "data-base-subnet-cidrs" {
     type = list
-    default = ["10.0.1.0/24" , "10.0.2.0/24"]
+    default = ["10.0.21.0/24" , "10.0.22.0/24"]
 }
 
 variable "data-base-subnet-tags" {
