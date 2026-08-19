@@ -58,3 +58,5 @@ resource "aws_subnet" "data-base" {
       Name = "${var.project}-${var.environment}-data-base-${local.zone-names[count.index]}"
     },
     var.data-base-subnet-tags
+  ) 
+} 
