@@ -63,3 +63,17 @@ variable "data-base-route-table-tags" {
     type = map
     default = {}
 }
+
+variable "destination_cidr_block" {
+    default = "0.0.0.0/0"
+}
+
+variable "eip_tags" {
+    type = map
+    default = {}
+}
+
+ variable "aws_nat_gateway-tags" {
+     type = map
+    default = {}
+ }
