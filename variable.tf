@@ -73,7 +73,7 @@ variable "eip_tags" {
     default = {}
 }
 
- variable "aws_nat_gateway-tags" {
+ variable "nat_gateway-tags" {
      type = map
     default = {}
  }

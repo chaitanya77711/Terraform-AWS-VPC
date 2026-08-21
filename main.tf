@@ -132,7 +132,7 @@ resource "aws_nat_gateway" "main" {
     {
       Name = "${var.project}-${var.environment}"
     },
-    var.aws_nat_gateway-tags
+    var.nat_gateway-tags
   )    
   }
 
