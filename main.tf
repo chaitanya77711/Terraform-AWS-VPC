@@ -70,7 +70,7 @@ resource "aws_route_table" "public" {
   tags =  merge(
     local.common-tags,
     {
-      Name = "${var.project}-${var.environment}-data-base-${local.zone-names[count.index]}"
+      Name = "${var.project}-${var.environment}-public"
     },
     var.public-route-table-tags
   )  
@@ -82,7 +82,7 @@ resource "aws_route_table" "private" {
   tags =  merge(
     local.common-tags,
     {
-      Name = "${var.project}-${var.environment}-data-base-${local.zone-names[count.index]}"
+      Name = "${var.project}-${var.environment}-private"
     },
     var.private-route-table-tags
   )  
@@ -94,7 +94,7 @@ resource "aws_route_table" "data-base" {
   tags =  merge(
     local.common-tags,
     {
-      Name = "${var.project}-${var.environment}-data-base-${local.zone-names[count.index]}"
+      Name = "${var.project}-${var.environment}-data-base"
     },
     var.data-base-route-table-tags
   )  
@@ -138,7 +138,7 @@ resource "aws_nat_gateway" "main" {
 
   # To ensure proper ordering, it is recommended to add an explicit dependency
   # on the Internet Gateway for the VPC.
-  depends_on = [aws_internet_gateway.example]
+  depends_on = [aws_internet_gateway.main]
 }
 
 resource "aws_route" "private" {
