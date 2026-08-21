@@ -65,7 +65,7 @@ resource "aws_subnet" "data-base" {
 
 #route-table
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.public.id
+  vpc_id = aws_vpc.main.id
 
   tags =  merge(
     local.common-tags,
@@ -77,7 +77,7 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.private.id
+  vpc_id = aws_vpc.main.id
 
   tags =  merge(
     local.common-tags,
@@ -89,7 +89,7 @@ resource "aws_route_table" "private" {
 }
 
 resource "aws_route_table" "data-base" {
-  vpc_id = aws_vpc.data-base.id
+  vpc_id = aws_vpc.main.id
 
   tags =  merge(
     local.common-tags,
@@ -100,12 +100,12 @@ resource "aws_route_table" "data-base" {
   )  
 }
 
-#nat gateway
+#nat route
 
 resource "aws_route" "public" {
   route_table_id            = aws_route_table.public.id
   destination_cidr_block    = var.destination_cidr_block
-  nat_gateway_id = aws-nat_gateway.main.id
+  nat_gateway_id = aws_nat_gateway.main.id
 }
 
 #elastic ip
@@ -130,7 +130,7 @@ resource "aws_nat_gateway" "main" {
     Name =  merge(
     local.common-tags,
     {
-      Name = "${var.project}-${var.environment}"
+      Name = "${var.project}-${var.environment}-nat"
     },
     var.aws_nat_gateway-tags
   )    
@@ -144,11 +144,11 @@ resource "aws_nat_gateway" "main" {
 resource "aws_route" "private" {
   route_table_id            = aws_route_table.private.id
   destination_cidr_block    = var.destination_cidr_block
-  nat_gateway_id = aws-nat_gateway.main.id
+  nat_gateway_id = aws_nat_gateway.main.id
 }
 
 resource "aws_route" "data-base" {
   route_table_id            = aws_route_table.data-base.id
   destination_cidr_block    = var.destination_cidr_block
-  nat_gateway_id = aws-nat_gateway.main.id
+  nat_gateway_id = aws_nat_gateway.main.id
 }
