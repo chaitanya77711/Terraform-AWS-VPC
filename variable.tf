@@ -36,7 +36,7 @@ variable "private-subnet-cidrs" {
 
 variable "private-subnet-tags" {
     type = map
-    default = {}
+    default = {}    
 }
 
 variable "data-base-subnet-cidrs" {
@@ -45,6 +45,21 @@ variable "data-base-subnet-cidrs" {
 }
 
 variable "data-base-subnet-tags" {
+    type = map
+    default = {}
+}
+
+variable "public-route-table-tags" {
+    type = map
+    default = {}
+}
+
+variable "private-route-table-tags" {
+    type = map
+    default = {}
+}
+
+variable "data-base-route-table-tags" {
     type = map
     default = {}
 }
