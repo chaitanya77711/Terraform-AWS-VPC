@@ -100,11 +100,15 @@ resource "aws_route_table" "data-base" {
   )  
 }
 
+#nat gateway
+
 resource "aws_route" "public" {
   route_table_id            = aws_route_table.public.id
   destination_cidr_block    = var.destination_cidr_block
-  gateway_id = aws_internet_gateway.main.id
+  nat_gateway_id = aws-nat_gateway.main.id
 }
+
+#elastic ip
 
 resource "aws_eip" "nat" {
   domain   = "vpc"
@@ -143,8 +147,8 @@ resource "aws_route" "private" {
   nat_gateway_id = aws-nat_gateway.main.id
 }
 
-resource "aws_route" "public" {
-  route_table_id            = aws_route_table.public.id
+resource "aws_route" "data-base" {
+  route_table_id            = aws_route_table.data-base.id
   destination_cidr_block    = var.destination_cidr_block
   nat_gateway_id = aws-nat_gateway.main.id
 }
