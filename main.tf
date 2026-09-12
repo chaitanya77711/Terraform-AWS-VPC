@@ -73,7 +73,8 @@ resource "aws_route_table" "public" {
       Name = "${var.project}-${var.environment}-public"
     },
     var.public-route-table-tags
-  )  
+  ) 
+
 }
 
 resource "aws_route_table" "private" {
@@ -100,12 +101,34 @@ resource "aws_route_table" "data-base" {
   )  
 }
 
+resource "aws_route_table_association" "public" {
+  count = length(var.public-subnet-cidrs)
+
+  subnet_id      = aws_subnet.public[count.index].id
+  route_table_id = aws_route_table.public.id
+}
+
+resource "aws_route_table_association" "private" {
+  count = length(var.private-subnet-tags)
+
+  subnet_id      = aws_subnet.priavte[count.index].id
+  route_table_id = aws_route_table.priavte.id
+}
+
+resource "aws_route_table_association" "data-base" {
+  count = length(var.data-base-subnet-cidrs)
+
+  subnet_id      = aws_subnet.data-base[count.index].id
+  route_table_id = aws_route_table.data-base.id
+}
+
+
 #nat route
 
 resource "aws_route" "public" {
   route_table_id            = aws_route_table.public.id
   destination_cidr_block    = var.destination_cidr_block
-  nat_gateway_id = aws_nat_gateway.main.id
+  gateway_id = aws_internet_gateway.main.id
 }
 
 #elastic ip
@@ -122,6 +145,8 @@ tags =  merge(
   )    
 }
 
+
+#nat gateway
 resource "aws_nat_gateway" "main" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public[0].id
