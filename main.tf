@@ -109,10 +109,10 @@ resource "aws_route_table_association" "public" {
 }
 
 resource "aws_route_table_association" "private" {
-  count = length(var.private-subnet-tags)
+  count = length(var.private-subnet-cidrs)
 
-  subnet_id      = aws_subnet.priavte[count.index].id
-  route_table_id = aws_route_table.priavte.id
+  subnet_id      = aws_subnet.private[count.index].id
+  route_table_id = aws_route_table.private.id
 }
 
 resource "aws_route_table_association" "data-base" {
