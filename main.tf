@@ -176,3 +176,4 @@ resource "aws_route" "data-base" {
   destination_cidr_block    = var.destination_cidr_block
   nat_gateway_id = aws_nat_gateway.main.id
 }
+
