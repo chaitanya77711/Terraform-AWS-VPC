@@ -73,7 +73,12 @@ variable "eip_tags" {
     default = {}
 }
 
- variable "nat_gateway-tags" {
-     type = map
+variable "nat_gateway-tags" {
+    type = map
     default = {}
  }
+
+variable "is_peering_required" {
+    type = bool
+    default = false          
+}
